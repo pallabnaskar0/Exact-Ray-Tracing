@@ -1,0 +1,19 @@
+function[xp,yp,zp,Lp,Mp,Np]=singray_er(y,z,L,M,N,R,n,np)
+    q=n/np;
+    x=0;
+    c=1/R;
+    G=N-c*(L*x+M*y+N*z);
+    F=c*(x^2+y^2+z^2)-2*z;
+    D=F/(G+sqrt(G^2-c*F));
+    
+    xp=x+L*D;
+    yp=y+M*D;
+    zp=z+N*D;
+    alpha=-c*xp;
+    beta=-c*yp;
+    gamma=(1-c*zp);
+    cosi=sqrt(G^2-c*F);
+    cosip=sqrt(1-q^2*(1-cosi^2));
+    Lp=q*L+alpha*(cosip-q*cosi);
+    Mp=q*M+beta*(cosip-q*cosi);
+    Np=q*N+gamma*(cosip-q*cosi);
